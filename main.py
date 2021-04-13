@@ -1,20 +1,21 @@
-from urllib.request import urlopen as uReq
-from bs4 import BeautifulSoup as soup
 import csv
-import pync
 import time
 from datetime import datetime
-import requests
+from urllib.request import urlopen as uReq
 
-# Telegram
-chat_id = -467201633
+import os
+import pync
+import requests
+from bs4 import BeautifulSoup as soup
+
+# insert Telegram chat_id
+chat_id = os.environ['CHAT_ID']
 
 while True:
 
     saved_names = []
     # insert the immowelt url with the required filters
-    immowelt_url = "https://www.immowelt.de/liste/berlin/wohnungen/" \
-                   "mieten?roomi=2&prima=1000&wflmi=50&sort=createdate%2Bdesc"
+    immowelt_url = ""
 
     try:
         with open('inserate.csv', 'r') as file:
@@ -78,6 +79,7 @@ while True:
 
         f.close()
 
+    # change search interval (seconds)
     time.sleep(300)
 
 
