@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup as soup
 
 # insert Telegram chat_id
 chat_id = os.environ['CHAT_ID']
+api_key = os.environ['API_KEY']
 
 while True:
 
@@ -65,12 +66,12 @@ while True:
                 pync.notify('Es gibt ein neues Inserat auf Immowelt in ' + adresse)
                 # notification telegram
                 message = "Neues Inserat auf ImmoWelt in: " + adresse + " für " + str(preis) + " (kalt)"
-                url_send_message = 'https://api.telegram.org/bot1550234744:AAHUQCqZ_9RWB_kQERMPTYyz6jRd_CZ8etY/' \
+                url_send_message = 'https://api.telegram.org/bot' + api_key + '/' \
                                    'sendMessage?chat_id=' + str(chat_id) + '&text="{}"'.format(message)
                 print(message)
                 requests.get(url_send_message)
                 offer_url = "https://www.immowelt.de/expose/" + expose
-                url_send_message = 'https://api.telegram.org/bot1550234744:AAHUQCqZ_9RWB_kQERMPTYyz6jRd_CZ8etY/' \
+                url_send_message = 'https://api.telegram.org/bot' + api_key + '/' \
                                    'sendMessage?chat_id=' + str(chat_id) + '&text="{}"'.format(offer_url)
                 print(offer_url)
                 requests.get(url_send_message)
